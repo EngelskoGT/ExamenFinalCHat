@@ -1,0 +1,18 @@
+:root {
+  /* Eliminar variables de color si existen */
+}
+
+body {
+  /* Establecer un fondo blanco limpio */
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Color de fondo ligero de Bootstrap */
+}
+
+/* Opcional: Centrar el contenido de la aplicación */
+#root {
+  /* Asegura que la aplicación ocupe todo el espacio */
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}

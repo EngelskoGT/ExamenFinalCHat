@@ -1,0 +1,6 @@
+@ChatBridgeApi_HostAddress = http://localhost:5116
+
+GET {{ChatBridgeApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

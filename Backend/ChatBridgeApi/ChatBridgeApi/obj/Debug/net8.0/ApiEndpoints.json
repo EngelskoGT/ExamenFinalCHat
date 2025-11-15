@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "MensajesController",
+    "Method": "ObtenerMensajes",
+    "RelativePath": "api/Mensajes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
