@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|c:\\users\\engel\\desktop\\exaen final\\backend\\chatbridgeapi\\chatbridgeapi\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|solutionrelative:chatbridgeapi\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|c:\\users\\engel\\desktop\\exaen final\\backend\\chatbridgeapi\\chatbridgeapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|solutionrelative:chatbridgeapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|c:\\users\\engel\\desktop\\exaen final\\backend\\chatbridgeapi\\chatbridgeapi\\chatbridgeapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|solutionrelative:chatbridgeapi\\chatbridgeapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|c:\\users\\engel\\desktop\\exaen final\\backend\\chatbridgeapi\\chatbridgeapi\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|solutionrelative:chatbridgeapi\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF44AC70-CD38-4DDA-A6A2-C8DC7A4075D0}|ChatBridgeApi\\ChatBridgeApi.csproj|c:\\users\\engel\\desktop\\exaen final\\backend\\chatbridgeapi\\chatbridgeapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -27,19 +31,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ChatBridgeApi.http",
+              "DocumentMoniker": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\ChatBridgeApi\\ChatBridgeApi.http",
+              "RelativeDocumentMoniker": "ChatBridgeApi\\ChatBridgeApi.http",
+              "ToolTip": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\ChatBridgeApi\\ChatBridgeApi.http",
+              "RelativeToolTip": "ChatBridgeApi\\ChatBridgeApi.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-11-15T16:46:02.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\ChatBridgeApi\\Program.cs",
               "RelativeDocumentMoniker": "ChatBridgeApi\\Program.cs",
               "ToolTip": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\ChatBridgeApi\\Program.cs",
               "RelativeToolTip": "ChatBridgeApi\\Program.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAADEAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-15T15:33:19.324Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MensajesController.cs",
               "DocumentMoniker": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\ChatBridgeApi\\Controllers\\MensajesController.cs",
               "RelativeDocumentMoniker": "ChatBridgeApi\\Controllers\\MensajesController.cs",
@@ -52,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\engel\\Desktop\\exaen final\\Backend\\ChatBridgeApi\\ChatBridgeApi\\appsettings.json",
               "RelativeDocumentMoniker": "ChatBridgeApi\\appsettings.json",
@@ -60,8 +77,7 @@
               "RelativeToolTip": "ChatBridgeApi\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-15T15:23:30.319Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-15T15:23:30.319Z"
             }
           ]
         }

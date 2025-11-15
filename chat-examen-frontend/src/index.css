@@ -1,18 +1,59 @@
-:root {
-  /* Eliminar variables de color si existen */
+/* Limpiar los estilos predeterminados de Vite */
+
+/* Color de fondo global para toda la aplicación */
+body, html, #root {
+  background-color: #21618C !important; /* El color azul verdoso que proporcionaste */
+  height: 100%; /* Asegura que el body ocupe el 100% de la altura */
 }
 
-body {
-  /* Establecer un fondo blanco limpio */
-  margin: 0;
-  min-height: 100vh;
-  background-color: #f8f9fa; /* Color de fondo ligero de Bootstrap */
-}
 
-/* Opcional: Centrar el contenido de la aplicación */
+/* El ID root es donde React monta la aplicación */
 #root {
-  /* Asegura que la aplicación ocupe todo el espacio */
-  display: flex;
-  min-height: 100vh;
   width: 100%;
+}
+
+/* CLASE PARA EL FONDO DEL CUERPO DEL CHAT */
+.chat-background {
+  /* Imagen y Transparencia */
+  background-image: url('/fondo-chat-umg.png'); 
+  background-color: rgba(255, 255, 255, 0.7); 
+  
+  /* ********************************************** */
+  /* CONFIGURACIÓN QUE GENERA EL PATRÓN VISIBLE */
+  /* ********************************************** */
+  
+  /* 1. Mosaico para llenar el espacio vertical y horizontalmente */
+  background-repeat: repeat; 
+  
+  /* 2. Tamaño fijo (500px) para que cada repetición se vea grande */
+  background-size: 500px auto; 
+  
+  /* 3. El fondo se desplaza con el contenido de la tarjeta */
+  background-attachment: local; 
+  
+  /* 4. Iniciar la posición de la repetición */
+  background-position: 0 0; 
+}
+
+/* CLASE PARA EL EFECTO GLASSMORHPISM */
+.bubble-glass {
+    /* Fondo ligeramente transparente para ver la imagen detrás */
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco con 20% de opacidad */
+    
+    /* 💡 PROPIEDAD CRÍTICA: Desenfoque (Blur) */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* Soporte para navegadores basados en WebKit */
+    
+    /* Borde sutil para simular el cristal */
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el título Chat UMG */
+h2.text-white { /* Apuntamos al h2 con la clase text-white */
+    /* 💡 Usamos una fuente serif (como Georgia) para un look más estilizado */
+    font-family: Georgia, serif !important; 
+    font-style: italic; /* Opcional: Hace la letra cursiva para un toque extra de estilo */
+    font-weight: bold;
+    letter-spacing: 1px; /* Opcional: Espaciado para mayor legibilidad */
 }

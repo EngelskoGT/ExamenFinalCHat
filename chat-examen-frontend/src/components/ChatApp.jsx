@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'; // 💡 1. Importar useRef
+import React, { useState, useEffect, useRef } from 'react'; 
 import { Form, Button, Card, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
+// Importamos el componente de Emoji y el logo
+import EmojiPickerContainer from './EmojiPickerContainer'; 
+import logoUMG from '../assets/logo-umg.png'; 
 
-// URL de la API Externa para el ENVÍO de mensajes (Serie II)
+// URLs y Constantes
 const EXTERNAL_MESSAGE_URL = 'https://backcvbgtmdesa.azurewebsites.net/api/Mensajes';
-
-// URL de TU API de Azure para la VISUALIZACIÓN de mensajes (Serie III)
 const AZURE_VISUALIZATION_URL = 'https://chatbridgeapi20251115094402-gndhbmcfexbdcqej.chilecentral-01.azurewebsites.net/api/Mensajes';
+const COLOR_PALETTE = ['success', 'info', 'warning', 'danger', 'secondary', 'dark']; 
+const titleStyle = { fontFamily: 'Georgia, serif', fontStyle: 'italic', fontWeight: 'bold', letterSpacing: '1px' };
 
 function ChatApp({ authToken, onLogout }) {
     const [messages, setMessages] = useState([]);
@@ -13,21 +16,39 @@ function ChatApp({ authToken, onLogout }) {
     const [loadingMessages, setLoadingMessages] = useState(false);
     const [sending, setSending] = useState(false);
     const [error, setError] = useState(null);
-
-    // 💡 2. CREAR LA REFERENCIA
-    const messagesEndRef = useRef(null); 
     
-    // Obtener el nombre de usuario de localStorage
+    // ESTADO: Controla la visibilidad del selector de emojis
+    const [showPicker, setShowPicker] = useState(false);
+
+    // REFERENCIAS Y ESTADOS
+    const messagesEndRef = useRef(null); 
+    const [userColors, setUserColors] = useState({}); 
     const loginEmisor = localStorage.getItem('username') || 'UsuarioDesconocido'; 
 
-    // Función para hacer scroll
+    // FUNCIÓN DE SCROLL
     const scrollToBottom = () => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
-    // **********************************************
-    // SERIE III: Obtener y Visualizar Mensajes
-    // **********************************************
+    // FUNCIÓN DE ASIGNACIÓN DE COLOR CONSISTENTE
+    const getEmisorColor = (emisor) => {
+        if (emisor === loginEmisor) {
+            return 'primary';
+        }
+        if (userColors[emisor]) {
+            return userColors[emisor];
+        }
+        let hash = 0;
+        for (let i = 0; i < emisor.length; i++) {
+            hash = emisor.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const index = Math.abs(hash) % COLOR_PALETTE.length;
+        const newColor = COLOR_PALETTE[index];
+        setUserColors(prevColors => ({ ...prevColors, [emisor]: newColor }));
+        return newColor;
+    };
+
+    // FETCH DE MENSAJES (SERIE III)
     const fetchMessages = async () => {
         setLoadingMessages(true);
         setError(null);
@@ -36,7 +57,7 @@ function ChatApp({ authToken, onLogout }) {
             
             if (response.ok) {
                 const data = await response.json();
-                setMessages(data.reverse()); // Mostrar más recientes al final
+                setMessages(data); 
             } else {
                 setError(`Error ${response.status} al cargar mensajes de Azure. Verifique el Backend.`);
             }
@@ -54,14 +75,18 @@ function ChatApp({ authToken, onLogout }) {
         return () => clearInterval(interval);
     }, []);
     
-    // 💡 3. EFECTO PARA EL SCROLL: Se ejecuta cada vez que 'messages' cambia
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
 
-    // **********************************************
-    // SERIE II: Enviar Mensajes
-    // **********************************************
+    // FUNCIÓN PARA INSERTAR EMOJI EN EL CAMPO DE TEXTO
+    const handleEmojiSelect = (emojiData) => {
+        setNewMessage(prevMsg => prevMsg + emojiData.emoji);
+        // Opcional: Cierra el selector después de seleccionar el emoji
+        // setShowPicker(false); 
+    };
+
+    // ENVÍO DE MENSAJES (SERIE II)
     const handleSend = async (e) => {
         e.preventDefault();
         if (!newMessage.trim() || sending) return;
@@ -70,24 +95,19 @@ function ChatApp({ authToken, onLogout }) {
         setError(null);
         
         try {
-            const payload = {
-                Cod_Sala: 0,
-                Login_Emisor: loginEmisor, 
-                Contenido: newMessage,
-            };
+            const payload = { Cod_Sala: 0, Login_Emisor: loginEmisor, Contenido: newMessage };
 
             const response = await fetch(EXTERNAL_MESSAGE_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authToken}`, // Token Bearer
+                    'Authorization': `Bearer ${authToken}`, 
                 },
                 body: JSON.stringify(payload),
             });
 
             if (response.ok) {
                 setNewMessage('');
-                // Al recargar mensajes, el useEffect de scroll se disparará
                 fetchMessages(); 
             } else {
                 if (response.status === 401) {
@@ -108,10 +128,13 @@ function ChatApp({ authToken, onLogout }) {
     // **********************************************
     return (
         <Container className="my-4">
-            {/* ... Encabezado ... */}
             <Row className="mb-3 align-items-center">
                 <Col>
-                    <h2 className="text-primary">Chat UMG</h2>
+                    <div className="d-flex align-items-center">
+                        <img src={logoUMG} alt="Logo UMG" style={{ height: '40px', marginRight: '10px' }} />
+                        {/* 💡 TÍTULO EN BLANCO CORREGIDO */}
+                        <h2 className="text-white mb-0" style={titleStyle}>Chat UMG</h2>
+                    </div>
                 </Col>
                 <Col className="text-end">
                     <span className="me-3 text-muted">Usuario: **{loginEmisor}**</span>
@@ -125,35 +148,61 @@ function ChatApp({ authToken, onLogout }) {
             <Row>
                 {/* Visualización de Mensajes (Serie III) */}
                 <Col md={12}>
-                    <Card style={{ height: '70vh', overflowY: 'auto' }} className="mb-3">
-                        <Card.Header className="text-center bg-light">
+                    <Card style={{ height: '70vh', overflowY: 'auto' }} className="mb-3 bg-transparent border-0">
+                        <Card.Header className="text-center bg-transparent border-0 text-dark fw-bold">
                             Visualización de Mensajes (Serie III)
                         </Card.Header>
-                        {/* 💡 4. ASIGNAR LA REFERENCIA AL CUERPO PARA EL SCROLL */}
-                        <Card.Body ref={messagesEndRef}> 
+                        
+                        <Card.Body className="chat-background"> 
                             {loadingMessages && <div className="text-center"><Spinner animation="border" size="sm" /> Cargando mensajes...</div>}
                             
                             {messages.map((msg, index) => {
-                                // CORRECCIÓN DE FECHA
+                                const assignedColor = getEmisorColor(msg.emisor);
                                 const date = new Date(msg.fecha); 
                                 const isValidDate = !isNaN(date.getTime());
                                 const formattedTime = isValidDate ? date.toLocaleTimeString() : '';
                                 const formattedDate = isValidDate ? date.toLocaleDateString() : 'Fecha Inválida';
                                 
+                                const borderColor = `var(--bs-${assignedColor})`;
+                                const isDarkBackground = (assignedColor === 'dark' || assignedColor === 'primary' || assignedColor === 'danger' || assignedColor === 'success');
+                                const textColor = isDarkBackground ? 'white' : 'black';
+
+                                // 💡 NUEVA LÓGICA DE DETECCIÓN Y ESTILO DE EMOJI
+                                // Regex comprueba si la cadena contiene SOLAMENTE emojis o espacios
+                                const isOnlyEmoji = /^[\p{Emoji}\s]+$/u.test(msg.contenido);
+
                                 return (
                                     <div 
                                         key={index} 
-                                        className={`mb-2 p-2 rounded ${msg.emisor === loginEmisor ? 'bg-primary text-white ms-auto' : 'bg-light border'}`} 
-                                        style={{ maxWidth: '80%' }}
+                                        className={`mb-2 p-2 rounded-pill bubble-glass 
+                                                   bg-${assignedColor} bg-opacity-75 
+                                                   ${msg.emisor === loginEmisor ? 'ms-auto' : ''}`} 
+                                        
+                                        style={{ 
+                                            maxWidth: '80%', 
+                                            color: textColor,
+                                            border: `2px solid ${borderColor}`,
+                                            // ESTILO CONDICIONAL
+                                            fontSize: isOnlyEmoji ? '2.5em' : '1em', 
+                                            padding: isOnlyEmoji ? '5px 15px' : '0.5rem',
+                                        }}
                                     >
-                                        <div className="fw-bold">{msg.emisor}</div> 
+                                        {/* Ocultamos el Emisor y la Fecha si es solo un Emoji */}
+                                        {!isOnlyEmoji && <div className="fw-bold">{msg.emisor}</div>} 
+                                        
+                                        {/* Contenido del mensaje */}
                                         <div>{msg.contenido}</div> 
-                                        <small className="text-end d-block" style={{ fontSize: '0.7em', opacity: 0.7 }}>
-                                            {formattedDate} {formattedTime}
-                                        </small>
+                                        
+                                        {!isOnlyEmoji && (
+                                            <small className="text-end d-block" style={{ fontSize: '0.7em', opacity: 0.7, color: 'inherit' }}>
+                                                {formattedDate} {formattedTime}
+                                            </small>
+                                        )}
                                     </div>
                                 );
                             })}
+                            
+                            <div ref={messagesEndRef} /> 
                         </Card.Body>
                     </Card>
                 </Col>
@@ -162,8 +211,22 @@ function ChatApp({ authToken, onLogout }) {
                 <Col md={12}>
                     <Card>
                         <Card.Body>
-                            <Form onSubmit={handleSend}>
-                                <Form.Group className="d-flex">
+                            {/* 💡 CONTENEDOR FLOTANTE DE EMOJIS */}
+                            {showPicker && (
+                                <EmojiPickerContainer onEmojiClick={handleEmojiSelect} />
+                            )}
+                            
+                            <Form onSubmit={handleSend} className="position-relative">
+                                <Form.Group className="d-flex align-items-center">
+                                    {/* BOTÓN PARA ABRIR/CERRAR EL SELECTOR */}
+                                    <Button 
+                                        variant="light" 
+                                        onClick={() => setShowPicker(prev => !prev)} 
+                                        className="me-2"
+                                        title="Seleccionar Emoji"
+                                    >
+                                        😀
+                                    </Button>
                                     <Form.Control
                                         type="text"
                                         placeholder="Escribe tu mensaje..."

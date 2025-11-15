@@ -79,3 +79,4 @@ C:\Users\engel\Desktop\exaen final\Backend\ChatBridgeApi\ChatBridgeApi\obj\Relea
 C:\Users\engel\Desktop\exaen final\Backend\ChatBridgeApi\ChatBridgeApi\obj\Release\net8.0\ChatBridgeApi.pdb
 C:\Users\engel\Desktop\exaen final\Backend\ChatBridgeApi\ChatBridgeApi\obj\Release\net8.0\ChatBridgeApi.genruntimeconfig.cache
 C:\Users\engel\Desktop\exaen final\Backend\ChatBridgeApi\ChatBridgeApi\obj\Release\net8.0\ref\ChatBridgeApi.dll
+C:\Users\engel\Desktop\exaen final\Backend\ChatBridgeApi\ChatBridgeApi\obj\Release\net8.0\ChatBridgeApi.sourcelink.json

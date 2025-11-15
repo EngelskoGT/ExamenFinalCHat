@@ -1,7 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+Ôªøvar builder = WebApplication.CreateBuilder(args);
 
 // **********************************
-// 1. CONFIGURACI”N DE SERVICIOS
+// 1. CONFIGURACI√ìN DE SERVICIOS
 // **********************************
 
 // Agregamos el servicio de CORS (necesario para que React se comunique)
@@ -10,24 +10,24 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(
         policy =>
         {
-            // CRÕTICO: Permite conexiones desde los puertos comunes de desarrollo de React
-            policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+            // üí° CR√çTICO: Usar AllowAnyOrigin()
+            policy.AllowAnyOrigin()
                   .AllowAnyHeader() // Permite cualquier encabezado HTTP (incluyendo Authorization)
-                  .AllowAnyMethod(); // Permite GET, POST, etc.
+                  .AllowAnyMethod(); // Permite GET, POST, PUT, DELETE, etc.
         });
 });
 
 // Agregamos el servicio de Controladores (para usar el MensajesController)
 builder.Services.AddControllers();
 
-// Estos servicios son para la documentaciÛn (Swagger)
+// Estos servicios son para la documentaci√≥n (Swagger)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // **********************************
-// 2. CONFIGURACI”N DE MIDDLEWARE
+// 2. CONFIGURACI√ìN DE MIDDLEWARE
 // **********************************
 
 // Configurar Swagger/OpenAPI solo en modo desarrollo
@@ -39,12 +39,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Usar la polÌtica de CORS que definimos
+// Usar la pol√≠tica de CORS que definimos
 app.UseCors();
 
 app.UseAuthorization();
 
-// CRÕTICO: Mapear los controladores
+// CR√çTICO: Mapear los controladores
 app.MapControllers();
 
 app.Run();

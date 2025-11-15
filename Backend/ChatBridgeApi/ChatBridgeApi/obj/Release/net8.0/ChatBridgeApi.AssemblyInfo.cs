@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChatBridgeApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d9b5c13f683d6db210eaa5f99d665e28bd2d133")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChatBridgeApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChatBridgeApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
