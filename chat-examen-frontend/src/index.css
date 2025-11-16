@@ -2,8 +2,12 @@
 
 /* Color de fondo global para toda la aplicación */
 body, html, #root {
+    /* 💡 FONT-FAMILY CRÍTICO PARA EMOJIS Y BANDERAS */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   background-color: #21618C !important; /* El color azul verdoso que proporcionaste */
   height: 100%; /* Asegura que el body ocupe el 100% de la altura */
+
+ 
 }
 
 
@@ -56,4 +60,33 @@ h2.text-white { /* Apuntamos al h2 con la clase text-white */
     font-style: italic; /* Opcional: Hace la letra cursiva para un toque extra de estilo */
     font-weight: bold;
     letter-spacing: 1px; /* Opcional: Espaciado para mayor legibilidad */
+}
+
+.emoji-fix {
+    font-size: 1.2em; /* Hazlo más grande para que el sistema lo note */
+    line-height: 1; 
+    /* Forzar a usar una fuente genérica que no interfiera con los glifos */
+    font-family: inherit, 'Segoe UI Symbol', 'Apple Color Emoji', 'Twemoji', sans-serif !important;
+}
+
+/* Animación de Parpadeo */
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); /* Color verde (success) */
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
+
+/* Aplicar la animación al círculo de estado */
+.status-pulse {
+  background-color: #0cea26; /* Verde Bootstrap (success) */
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: pulse-green 1.5s infinite; /* Aplicar la animación */
 }
